@@ -1,12 +1,7 @@
-import CursorSVG from "@/public/assets/CursorSVG";
 import { CursorChatProps, CursorMode } from "@/types/type";
+import CursorSVG from "@/public/assets/CursorSVG";
 
-const CursorChat = ({
-  cursor,
-  cursorState,
-  setCursorState,
-  updateMyPresence,
-}: CursorChatProps) => {
+const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: CursorChatProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateMyPresence({ message: e.target.value });
     setCursorState({
@@ -16,10 +11,11 @@ const CursorChat = ({
     });
   };
 
-  const handlekeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setCursorState({
         mode: CursorMode.Chat,
+        // @ts-ignore
         previousMessage: cursorState.message,
         message: "",
       });
@@ -38,24 +34,24 @@ const CursorChat = ({
       }}
     >
       {cursorState.mode === CursorMode.Chat && (
-
         <>
           <CursorSVG color="#000" />
-          <div 
-          className="absolute left-2 top-5 bg-blue-500 px-4 py-2 text-sm leading-relaxed text-white rounded-[20px]"
-          onKeyUp={(e) => e.stopPropagation()}
+
+          <div
+            className="absolute left-2 top-5 bg-blue-500 px-4 py-2 text-sm leading-relaxed text-white"
+            onKeyUp={(e) => e.stopPropagation()}
+            style={{
+              borderRadius: 20,
+            }}
           >
-            {cursorState.previousMessage && (
-              <div>{cursorState.previousMessage}</div>
-            )}
+            
+            {cursorState.previousMessage && <div>{cursorState.previousMessage}</div>}
             <input
-              className="z-10 w-60 border-none bg-transparent text-white placeholder-blue-500 outline-none"
+              className="z-10 w-60 border-none	bg-transparent text-white placeholder-blue-300 outline-none"
               autoFocus={true}
               onChange={handleChange}
-              onKeyDown={handlekeydown}
-              placeholder={
-                cursorState.previousMessage ? "" : "Type a message..."
-              }
+              onKeyDown={handleKeyDown}
+              placeholder={cursorState.previousMessage ? "" : "Say something…"}
               value={cursorState.message}
               maxLength={50}
             />
@@ -67,6 +63,3 @@ const CursorChat = ({
 };
 
 export default CursorChat;
-// {
-//     cursorState.mode === CursorMode.Chat && (
-//

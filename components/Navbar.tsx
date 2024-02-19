@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { memo } from "react";
-
 import { navElements } from "@/constants";
 import { ActiveElement, NavbarProps } from "@/types/type";
 
