@@ -27,7 +27,7 @@ type Props = {
 
 const Live = ({ canvasRef,undo,redo }: Props) => {
   
-  const [{ cursor }, updateMyPresence] = useMyPresence();
+  const [{ cursor }, updateMyPresence] = useMyPresence() as any;
 
   const [cursorState, setCursorState] = useState<CursorState>({
     mode: CursorMode.Hidden,
