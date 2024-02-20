@@ -47,7 +47,8 @@ const Live = ({ canvasRef,undo,redo }: Props) => {
     if (cursorState.mode === CursorMode.Reaction && cursorState.isPressed) {
       setReaction((reactions) =>
         reactions.concat([
-          {
+          { 
+            //@ts-ignore
             point: { x: cursor.x, y: cursor.y },
             value: cursorState.reaction,
             timestamp: Date.now(),
@@ -56,7 +57,9 @@ const Live = ({ canvasRef,undo,redo }: Props) => {
       );
 
       broadcast({
+        //@ts-ignore
         x: cursor.x,
+        //@ts-ignore
         y: cursor.y,
         value: cursorState.reaction,
       });
