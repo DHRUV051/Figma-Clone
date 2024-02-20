@@ -12,7 +12,7 @@ export function Room({ children }: { children: ReactNode }) {
       id="my-room"
       initialPresence={{
         cursor: null,
-        cursorColor: null,
+        cursorColor: "",
         editingText: null,
       }}
       initialStorage={{
